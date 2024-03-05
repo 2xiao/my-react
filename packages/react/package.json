@@ -4,7 +4,7 @@
 	"description": "react common functions",
 	"module": "index.ts",
 	"dependencies": {
-		"shared": "workspace:*"
+		"shared": "workspace: *"
 	},
 	"keywords": [],
 	"author": "",

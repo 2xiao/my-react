@@ -1,0 +1,14 @@
+{
+  "name": "react-reconciler",
+  "version": "1.0.0",
+  "description": "React package for creating custom renderers.",
+  "module": "index.ts",
+  "dependencies": {
+    "shared": "workspace: *"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
