@@ -1,4 +1,4 @@
-export type EffectTags = number;
+export type Flags = number;
 
 export const NoFlags = 0b0000000;
 export const HasEffect = 0b0000001;
