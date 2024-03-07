@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint --ext .ts,.jsx,.tsx --fix --quiet ./packages",
-		"build-dev": "rimraf dist && rollup --config scripts/rollup/react.config.js --bundleConfigAsCjs"
+		"build-dev": "rimraf dist && rollup --config scripts/rollup/dev.config.js --bundleConfigAsCjs"
 	},
 	"keywords": [],
 	"author": "",
@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@commitlint/cli": "^18.0.0",
 		"@commitlint/config-conventional": "^18.0.0",
+		"@rollup/plugin-alias": "^5.1.0",
 		"@rollup/plugin-commonjs": "^25.0.7",
 		"@rollup/plugin-replace": "^5.0.5",
 		"@typescript-eslint/eslint-plugin": "^6.8.0",

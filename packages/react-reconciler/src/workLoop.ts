@@ -39,9 +39,11 @@ function renderRoot(root: FiberRootNode) {
 		}
 	} while (true);
 
+	// 创建根 Fiber 树的 Root Fiber
 	const finishedWork = root.current.alternate;
 	root.finishedWork = finishedWork;
 
+	// 提交阶段的入口函数
 	commitRoot(root);
 }
 
@@ -107,13 +109,14 @@ function commitRoot(root: FiberRootNode) {
 	const rootHasEffects = (finishedWork.flags & MutationMask) !== NoFlags;
 
 	if (subtreeHasEffects || rootHasEffects) {
-		// beforeMutation
-		// mutation
-		commitMutationEffects(finishedWork);
+		// TODO: BeforeMutation
 
+		// Mutation
+		commitMutationEffects(finishedWork);
 		// Fiber 树切换，workInProgress 变成 current
 		root.current = finishedWork;
-		// layout
+
+		// TODO: Layout
 	} else {
 		root.current = finishedWork;
 	}

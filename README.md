@@ -12,6 +12,8 @@
 - [2. 实现 JSX](https://2xiao.github.io/leetcode-js/react/2)
 - [3. 实现 Reconciler](https://2xiao.github.io/leetcode-js/react/3)
 - [4. 实现更新机制](https://2xiao.github.io/leetcode-js/react/4)
+- [5. 实现组件树更新](https://2xiao.github.io/leetcode-js/react/5)
+- [6. 实现 DOM 树更新](https://2xiao.github.io/leetcode-js/react/6)
 
 ---
 
