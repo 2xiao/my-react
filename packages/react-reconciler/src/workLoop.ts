@@ -2,25 +2,27 @@ import { FiberNode, FiberRootNode, createWorkInProgress } from './fiber';
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
 import { HostRoot } from './workTags';
+import { MutationMask, NoFlags } from './fiberFlags';
+import { commitMutationEffects } from './commitWork';
 
 let workInProgress: FiberNode | null = null;
 
 // 调度功能
 export function scheduleUpdateOnFiber(fiber: FiberNode) {
-	const root = markUpdateFromFiberToRoot(fiber)
-	renderRoot(root)
+	const root = markUpdateFromFiberToRoot(fiber);
+	renderRoot(root);
 }
 
 // 从触发更新的节点向上遍历到 FiberRootNode
 function markUpdateFromFiberToRoot(fiber: FiberNode) {
-	let node = fiber
-	while(node.return !== null) {
-		node = node.return
+	let node = fiber;
+	while (node.return !== null) {
+		node = node.return;
 	}
 	if (node.tag == HostRoot) {
-		return node.stateNode
+		return node.stateNode;
 	}
-	return null
+	return null;
 }
 
 function renderRoot(root: FiberRootNode) {
@@ -36,6 +38,11 @@ function renderRoot(root: FiberRootNode) {
 			workInProgress = null;
 		}
 	} while (true);
+
+	const finishedWork = root.current.alternate;
+	root.finishedWork = finishedWork;
+
+	commitRoot(root);
 }
 
 // 初始化 workInProgress 变量
@@ -79,4 +86,35 @@ function completeUnitOfWork(fiber: FiberNode) {
 		node = node.return;
 		workInProgress = node;
 	} while (node !== null);
+}
+
+function commitRoot(root: FiberRootNode) {
+	const finishedWork = root.finishedWork;
+	if (finishedWork === null) {
+		return;
+	}
+
+	if (__DEV__) {
+		console.log('commit 阶段开始');
+	}
+
+	// 重置
+	root.finishedWork = null;
+
+	// 判断是否存在 3 个子阶段需要执行的操作
+	const subtreeHasEffects =
+		(finishedWork.subtreeFlags & MutationMask) !== NoFlags;
+	const rootHasEffects = (finishedWork.flags & MutationMask) !== NoFlags;
+
+	if (subtreeHasEffects || rootHasEffects) {
+		// beforeMutation
+		// mutation
+		commitMutationEffects(finishedWork);
+
+		// Fiber 树切换，workInProgress 变成 current
+		root.current = finishedWork;
+		// layout
+	} else {
+		root.current = finishedWork;
+	}
 }
