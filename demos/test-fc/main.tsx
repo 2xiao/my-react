@@ -1,15 +1,15 @@
 import React from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 const jsx = (<div>
   <span>hello my-react</span>
 </div>)
 
-function Child2() {
-  return 1234
-}
 function App() {
-  return <span>123</span>
+  const [count, setCount] = useState(120);
+  // window.setCount = setCount
+  return <span>{count}</span>
 }
 
 
