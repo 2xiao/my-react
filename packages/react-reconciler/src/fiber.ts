@@ -1,4 +1,4 @@
-import { Props, Key, Ref, ReactElemenType } from 'shared/ReactTypes';
+import { Props, Key, Ref, ReactElementType } from 'shared/ReactTypes';
 import { FunctionComponent, HostComponent, WorkTag } from './workTags';
 import { NoFlags, Flags } from './fiberFlags';
 import { Container } from 'hostConfig';
@@ -92,7 +92,7 @@ export const createWorkInProgress = (
 };
 
 // 根据 DOM 节点创建新的 Fiber 节点
-export function createFiberFromElement(element: ReactElemenType): FiberNode {
+export function createFiberFromElement(element: ReactElementType): FiberNode {
 	const { type, key, props } = element;
 	let fiberTag: WorkTag = FunctionComponent;
 	if (typeof type == 'string') {

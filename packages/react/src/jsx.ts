@@ -5,7 +5,7 @@ import {
 	Ref,
 	Key,
 	Props,
-	ReactElemenType,
+	ReactElementType,
 	ElementType
 } from 'shared/ReactTypes';
 
@@ -14,7 +14,7 @@ const ReactElement = function (
 	key: Key,
 	ref: Ref,
 	props: Props
-): ReactElemenType {
+): ReactElementType {
 	const element = {
 		$$typeof: REACT_ELEMENT_TYPE,
 		type,
@@ -26,6 +26,14 @@ const ReactElement = function (
 	return element;
 };
 
+export function isValidElement(object: any): object is ReactElementType {
+	return (
+		typeof object === 'object' &&
+		object !== null &&
+		object.$$typeof === REACT_ELEMENT_TYPE
+	);
+}
+
 export const jsx = (type: ElementType, config: any, ...children: any) => {
 	let key: Key = null;
 	let ref: Ref = null;
@@ -34,7 +42,7 @@ export const jsx = (type: ElementType, config: any, ...children: any) => {
 		const val = config[prop];
 		if (prop === 'key') {
 			if (val !== undefined) {
-				key = val;
+				key = '' + val;
 			}
 			continue;
 		}
@@ -59,7 +67,7 @@ export const jsx = (type: ElementType, config: any, ...children: any) => {
 	return ReactElement(type, key, ref, props);
 };
 
-export const jsxDEV = (type: ElementType, config: any) => {
+export const jsxDEV = (type: ElementType, config: any, ...children: any) => {
 	let key: Key = null;
 	let ref: Ref = null;
 	const props: Props = {};
@@ -67,7 +75,7 @@ export const jsxDEV = (type: ElementType, config: any) => {
 		const val = config[prop];
 		if (prop === 'key') {
 			if (val !== undefined) {
-				key = val;
+				key = '' + val;
 			}
 			continue;
 		}
@@ -79,6 +87,14 @@ export const jsxDEV = (type: ElementType, config: any) => {
 		}
 		if ({}.hasOwnProperty.call(config, prop)) {
 			props[prop] = val;
+		}
+	}
+	const childrenLength = children.length;
+	if (childrenLength) {
+		if (childrenLength === 1) {
+			props.children = children[0];
+		} else {
+			props.children = children;
 		}
 	}
 	return ReactElement(type, key, ref, props);

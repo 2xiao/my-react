@@ -1,6 +1,6 @@
 import internals from 'shared/internals';
 import { FiberNode } from './fiber';
-import { UpdateQueue, creatUpdate, enqueueUpdate } from './updateQueue';
+import { UpdateQueue, createUpdate, enqueueUpdate } from './updateQueue';
 import { Dispatch, Dispatcher } from 'react/src/currentDispatcher';
 import { createUpdateQueue } from './updateQueue';
 import { Action } from 'shared/ReactTypes';
@@ -118,7 +118,7 @@ function dispatchSetState<State>(
 	updateQueue: UpdateQueue<State>,
 	action: Action<State>
 ) {
-	const update = creatUpdate(action);
+	const update = createUpdate(action);
 	enqueueUpdate(updateQueue, update);
 	// 调度更新
 	scheduleUpdateOnFiber(fiber);

@@ -16,7 +16,7 @@ export interface UpdateQueue<State> {
 }
 
 // 创建 Update 实例的方法
-export const creatUpdate = <State>(action: Action<State>): Update<State> => {
+export const createUpdate = <State>(action: Action<State>): Update<State> => {
 	return {
 		action
 	};

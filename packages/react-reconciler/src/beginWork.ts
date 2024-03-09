@@ -1,4 +1,4 @@
-import { ReactElemenType } from 'shared/ReactTypes';
+import { ReactElementType } from 'shared/ReactTypes';
 import { FiberNode } from './fiber';
 import { UpdateQueue, processUpdateQueue } from './updateQueue';
 import {
@@ -70,7 +70,7 @@ function updateHostText() {
 // 生成子节点对应的 workInProgress FiberNode
 function reconcileChildren(
 	workInProgress: FiberNode,
-	children?: ReactElemenType
+	children?: ReactElementType
 ) {
 	// alternate 指向节点的备份节点，即 current
 	const current = workInProgress.alternate;

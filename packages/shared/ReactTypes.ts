@@ -5,7 +5,7 @@ export type Props = any;
 export type Ref = any;
 export type ElementType = any;
 
-export interface ReactElemenType {
+export interface ReactElementType {
 	$$typeof: symbol | number;
 	key: Key;
 	props: Props;
@@ -14,4 +14,4 @@ export interface ReactElemenType {
 	__mark: string;
 }
 
-export type Action<State> = State | ((prevState: State) => State)
+export type Action<State> = State | ((prevState: State) => State);

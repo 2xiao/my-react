@@ -3,14 +3,15 @@ import {
 	updateContainer
 } from 'react-reconciler/src/fiberReconciler';
 import { Container } from './hostConfig';
-import { ReactElemenType } from 'shared/ReactTypes';
+import { ReactElementType } from 'shared/ReactTypes';
 
 // ReactDOM.createRoot(root).render(<App />);
 export function createRoot(container: Container) {
 	const root = createContainer(container);
+
 	return {
-		render(element: ReactElemenType) {
-			updateContainer(element, root);
+		render(element: ReactElementType) {
+			return updateContainer(element, root);
 		}
 	};
 }
