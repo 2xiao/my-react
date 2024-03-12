@@ -44,18 +44,18 @@ export const enqueueUpdate = <State>(
 export const processUpdateQueue = <State>(
 	baseState: State,
 	pendingUpdate: Update<State> | null
-): { memorizedState: State } => {
+): { memoizedState: State } => {
 	const result: ReturnType<typeof processUpdateQueue<State>> = {
-		memorizedState: baseState
+		memoizedState: baseState
 	};
 	if (pendingUpdate !== null) {
 		const action = pendingUpdate.action;
 		if (action instanceof Function) {
-			// 若 action 是回调函数：(baseState = 1, update = (i) => 5i)) => memorizedState = 5
-			result.memorizedState = action(baseState);
+			// 若 action 是回调函数：(baseState = 1, update = (i) => 5i)) => memoizedState = 5
+			result.memoizedState = action(baseState);
 		} else {
-			// 若 action 是状态值：(baseState = 1, update = 2) => memorizedState = 2
-			result.memorizedState = action;
+			// 若 action 是状态值：(baseState = 1, update = 2) => memoizedState = 2
+			result.memoizedState = action;
 		}
 	}
 	return result;
