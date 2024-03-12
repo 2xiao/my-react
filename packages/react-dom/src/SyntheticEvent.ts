@@ -1,7 +1,7 @@
 import { Container } from 'hostConfig';
 import { Props } from 'shared/ReactTypes';
 
-export const elementPropsKey = '__props';
+// 支持的事件类型
 const validEventTypeList = ['click'];
 
 type EventCallback = (e: Event) => void;
@@ -15,10 +15,13 @@ interface SyntheticEvent extends Event {
 	__stopPropagation: boolean;
 }
 
+export const elementPropsKey = '__props';
+
 export interface DOMElement extends Element {
 	[elementPropsKey]: Props;
 }
 
+// 将事件的回调保存在 DOM 中
 export function updateFiberProps(node: DOMElement, props: Props) {
 	node[elementPropsKey] = props;
 }

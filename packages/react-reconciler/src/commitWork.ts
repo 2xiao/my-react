@@ -1,7 +1,9 @@
 import {
 	Container,
+	Instance,
 	appendChildToContainer,
 	commitUpdate,
+	insertChildToContainer,
 	removeChild
 } from 'hostConfig';
 import { FiberNode, FiberRootNode } from './fiber';
@@ -81,8 +83,52 @@ const commitPlacement = (finishedWork: FiberNode) => {
 	if (__DEV__) {
 		console.log('执行 Placement 操作', finishedWork);
 	}
+	// parent DOM
 	const hostParent = getHostParent(finishedWork) as Container;
-	appendPlacementNodeIntoContainer(finishedWork, hostParent);
+
+	// Host sibling
+	const sibling = getHostSibling(finishedWork);
+
+	appendPlacementNodeIntoContainer(finishedWork, hostParent, sibling);
+};
+
+// 获取兄弟 Host 节点
+const getHostSibling = (fiber: FiberNode) => {
+	let node: FiberNode = fiber;
+	findSibling: while (true) {
+		// 没有兄弟节点时，向上遍历
+		while (node.sibling == null) {
+			const parent = node.return;
+			if (
+				parent == null ||
+				parent.tag == HostComponent ||
+				parent.tag == HostRoot
+			) {
+				return null;
+			}
+			node = parent;
+		}
+
+		// 向下遍历
+		node.sibling.return = node.return;
+		node = node.sibling;
+		while (node.tag !== HostText && node.tag !== HostComponent) {
+			// 不稳定的 Host 节点不能作为目标兄弟 Host 节点
+			if ((node.flags & Placement) !== NoFlags) {
+				continue findSibling;
+			}
+			if (node.child == null) {
+				continue findSibling;
+			} else {
+				node.child.return = node;
+				node = node.child;
+			}
+		}
+
+		if ((node.flags & Placement) == NoFlags) {
+			return node.stateNode;
+		}
+	}
 };
 
 // 获取 parent DOM
@@ -105,10 +151,17 @@ const getHostParent = (fiber: FiberNode) => {
 
 const appendPlacementNodeIntoContainer = (
 	finishedWork: FiberNode,
-	hostParent: Container
+	hostParent: Container,
+	before?: Instance
 ) => {
 	if (finishedWork.tag === HostComponent || finishedWork.tag === HostText) {
-		appendChildToContainer(finishedWork.stateNode, hostParent);
+		if (before) {
+			// 执行移动操作
+			insertChildToContainer(finishedWork.stateNode, hostParent, before);
+		} else {
+			// 执行插入操作
+			appendChildToContainer(finishedWork.stateNode, hostParent);
+		}
 	} else {
 		const child = finishedWork.child;
 		if (child !== null) {

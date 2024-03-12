@@ -7,7 +7,6 @@ export type Instance = Element;
 export type TextInstance = Text;
 
 export const createInstance = (type: string, porps: any): Instance => {
-	// TODO: 处理 props
 	const element = document.createElement(type) as unknown;
 	updateFiberProps(element as DOMElement, porps);
 	return element as DOMElement;
@@ -30,6 +29,14 @@ export const appendChildToContainer = (
 	parent: Instance | Container
 ) => {
 	parent.appendChild(child);
+};
+
+export const insertChildToContainer = (
+	child: Instance,
+	container: Container,
+	before: Instance
+) => {
+	container.insertBefore(child, before);
 };
 
 export const commitUpdate = (fiber: FiberNode) => {
