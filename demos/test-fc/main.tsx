@@ -7,13 +7,15 @@ const jsx = (<div>
 </div>)
 
 function App() {
-  const [count, setCount] = useState(120);
-  // window.setCount = setCount
-  return <span>{count}</span>
+  const [count, setCount] = useState(1210);
+  return  <div onClick={() => setCount(count + 1)} >{count}</div>
 }
 
+function Child() {
+  return <span>222</span>
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 // root.render(jsx);
 root.render(<App />);
 
