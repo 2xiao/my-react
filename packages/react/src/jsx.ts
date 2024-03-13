@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { REACT_ELEMENT_TYPE } from 'shared/ReactSymbols';
+import { REACT_ELEMENT_TYPE, REACT_FRAGMENT_TYPE } from 'shared/ReactSymbols';
 import {
 	Type,
 	Ref,
@@ -33,6 +33,8 @@ export function isValidElement(object: any): object is ReactElementType {
 		object.$$typeof === REACT_ELEMENT_TYPE
 	);
 }
+
+export const Fragment = REACT_FRAGMENT_TYPE;
 
 export const jsx = (type: ElementType, config: any, ...children: any) => {
 	let key: Key = null;

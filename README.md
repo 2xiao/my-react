@@ -16,6 +16,11 @@
 - [6. 实现 DOM 树更新](https://2xiao.github.io/leetcode-js/react/6)
 - [7. 实现 ReactDOM](https://2xiao.github.io/leetcode-js/react/7)
 - [8. 实现 useState](https://2xiao.github.io/leetcode-js/react/8)
+- [9. 接入测试框架](https://2xiao.github.io/leetcode-js/react/9)
+- [10. 实现单节点 update](https://2xiao.github.io/leetcode-js/react/10)
+- [11. 实现事件系统](https://2xiao.github.io/leetcode-js/react/11)
+- [12. 实现 Diff 算法](https://2xiao.github.io/leetcode-js/react/12)
+- [13. 实现 Fragment](https://2xiao.github.io/leetcode-js/react/13)
 
 ---
 
@@ -56,6 +61,8 @@ React 是由卓越工程师们在数年时间内精心打造的库，其中必�
 ---
 
 ### 版权声明
+
+本书是学习 [《从 0 实现 React18》](https://qux.xet.tech/s/2wiFh1) 后整理创作的，原作者是 [@卡颂](https://github.com/BetaSu/)。
 
 本作品采用 知识署名-非商业性使用-禁止演绎 （BY-NC-ND） 4.0 国际许可[协议](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.zh-Hans) 进行许可。
 

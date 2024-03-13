@@ -2,6 +2,7 @@ import { ReactElementType } from 'shared/ReactTypes';
 import { FiberNode } from './fiber';
 import { UpdateQueue, processUpdateQueue } from './updateQueue';
 import {
+	Fragment,
 	FunctionComponent,
 	HostComponent,
 	HostRoot,
@@ -21,6 +22,8 @@ export const beginWork = (workInProgress: FiberNode) => {
 			return updateFunctionComponent(workInProgress);
 		case HostText:
 			return updateHostText();
+		case Fragment:
+			return updateFragment(workInProgress);
 		default:
 			if (__DEV__) {
 				console.warn('beginWork 未实现的类型', workInProgress.tag);
@@ -64,6 +67,12 @@ function updateFunctionComponent(workInProgress: FiberNode) {
 function updateHostText() {
 	// 没有子节点，直接返回 null
 	return null;
+}
+
+function updateFragment(workInProgress: FiberNode) {
+	const nextChildren = workInProgress.pendingProps;
+	reconcileChildren(workInProgress, nextChildren);
+	return workInProgress.child;
 }
 
 // 对比子节点的 current FiberNode 与 子节点的 ReactElement
