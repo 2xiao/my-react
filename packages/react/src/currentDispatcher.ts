@@ -5,6 +5,7 @@ import { Action } from 'shared/ReactTypes';
 // const [data, setData] = useState(0data) => data + 1);
 export interface Dispatcher {
 	useState: <S>(initialState: (() => S) | S) => [S, Dispatch<S>];
+	useEffect: (callback: () => void | void, deps: any[] | void) => void;
 }
 
 export type Dispatch<State> = (action: Action<State>) => void;

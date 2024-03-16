@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://2xiao.github.io/leetcode-js/assets/image/react-logo.png" alt="logo" height="360"/>
+  <a href="https://2xiao.github.io/leetcode-js/react" target="_blank"><img src="https://2xiao.github.io/leetcode-js/assets/image/react-logo.png" alt="logo" height="360"/></a>
 </p>
 <p align="center"><font size=5><b>《自己动手写 React》</b></font></p>
 <p align="center"><font color=gray>深入理解 React 源码，手把手带你构建自己的 React 库。</font></p>
@@ -22,6 +22,7 @@
 - [12. 实现 Diff 算法](https://2xiao.github.io/leetcode-js/react/12)
 - [13. 实现 Fragment](https://2xiao.github.io/leetcode-js/react/13)
 - [14. 实现同步调度流程](https://2xiao.github.io/leetcode-js/react/14)
+- [15. 实现 useEffect](https://2xiao.github.io/leetcode-js/react/15)
 
 ---
 
