@@ -1,5 +1,6 @@
 import {
 	Container,
+	Instance,
 	appendInitialChild,
 	createInstance,
 	createTextInstance
@@ -13,7 +14,6 @@ import {
 	HostText
 } from './workTags';
 import { NoFlags, Update } from './fiberFlags';
-import { updateFiberProps } from 'react-dom/src/SyntheticEvent';
 
 // 生成更新计划，计算和收集更新 flags
 export const completeWork = (workInProgress: FiberNode) => {
@@ -73,13 +73,7 @@ function updateHostText(current: FiberNode, workInProgress: FiberNode) {
 }
 
 function updateHostComponent(current: FiberNode, workInProgress: FiberNode) {
-	const oldProps = current.memoizedProps;
-	const newProps = workInProgress.pendingProps;
-
-	if (oldProps !== newProps) {
-		markUpdate(workInProgress);
-	}
-	updateFiberProps(workInProgress.stateNode, newProps);
+	markUpdate(workInProgress);
 }
 
 // 为 Fiber 节点增加 Update flags
@@ -87,7 +81,10 @@ function markUpdate(workInProgress: FiberNode) {
 	workInProgress.flags |= Update;
 }
 
-function appendAllChildren(parent: Container, workInProgress: FiberNode) {
+function appendAllChildren(
+	parent: Container | Instance,
+	workInProgress: FiberNode
+) {
 	let node = workInProgress.child;
 	while (node !== null) {
 		if (node.tag == HostComponent || node.tag == HostText) {

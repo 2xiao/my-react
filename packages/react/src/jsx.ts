@@ -94,3 +94,5 @@ export const jsxDEV = (type: ElementType, config: any) => {
 
 	return ReactElement(type, key, ref, props);
 };
+
+export const createElement = jsx;
