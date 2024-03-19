@@ -1,6 +1,7 @@
 import internals from 'shared/internals';
 import { FiberNode } from './fiber';
 import {
+	Update,
 	UpdateQueue,
 	createUpdate,
 	enqueueUpdate,
@@ -28,6 +29,8 @@ export interface Hook {
 	memoizedState: any; // 保存 Hook 的数据
 	queue: any;
 	next: Hook | null;
+	baseState: any;
+	baseQueue: Update<any> | null;
 }
 
 export interface Effect {
@@ -133,16 +136,34 @@ function updateState<State>(): [State, Dispatch<State>] {
 
 	// 计算新 state 的逻辑
 	const queue = hook.queue as UpdateQueue<State>;
+	const baseState = hook.baseState;
 	const pending = queue.shared.pending;
-	queue.shared.pending = null;
+	const current = currentHook as Hook;
+	let baseQueue = current.baseQueue;
 
 	if (pending !== null) {
-		const { memoizedState } = processUpdateQueue(
-			hook.memoizedState,
-			pending,
-			renderLane
-		);
-		hook.memoizedState = memoizedState;
+		if (baseQueue !== null) {
+			// 合并 baseQueue 和 queue 链表
+			const baseQueueFirst = baseQueue.next;
+			const pendingFirst = pending.next;
+			baseQueue.next = pendingFirst;
+			pending.next = baseQueueFirst;
+		}
+		baseQueue = pending;
+		// 将 baseQueue 保存在 current
+		current.baseQueue = pending;
+		queue.shared.pending = null;
+
+		if (baseQueue !== null) {
+			const {
+				memoizedState,
+				baseQueue: newBaseQueue,
+				baseState: newBaseState
+			} = processUpdateQueue(baseState, baseQueue, renderLane);
+			hook.memoizedState = memoizedState;
+			hook.baseQueue = newBaseQueue;
+			hook.baseState = newBaseState;
+		}
 	}
 	return [hook.memoizedState, queue.dispatch as Dispatch<State>];
 }
@@ -272,7 +293,9 @@ function updateWorkInProgressHook(): Hook {
 	const newHook: Hook = {
 		memoizedState: currentHook.memoizedState,
 		queue: currentHook.queue,
-		next: null
+		next: null,
+		baseQueue: currentHook.baseQueue,
+		baseState: currentHook.baseState
 	};
 	if (workInProgressHook == null) {
 		// update 时的第一个hook
@@ -297,7 +320,9 @@ function mountWorkInProgressHook(): Hook {
 	const hook: Hook = {
 		memoizedState: null,
 		queue: null,
-		next: null
+		next: null,
+		baseQueue: null,
+		baseState: null
 	};
 	if (workInProgressHook == null) {
 		// mount 时的第一个hook

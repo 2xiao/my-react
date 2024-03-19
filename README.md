@@ -12,8 +12,8 @@
 - [2. 实现 JSX](https://2xiao.github.io/leetcode-js/react/2)
 - [3. 实现 Reconciler](https://2xiao.github.io/leetcode-js/react/3)
 - [4. 实现更新机制](https://2xiao.github.io/leetcode-js/react/4)
-- [5. 实现组件树更新](https://2xiao.github.io/leetcode-js/react/5)
-- [6. 实现 DOM 树更新](https://2xiao.github.io/leetcode-js/react/6)
+- [5. 实现 Render 阶段](https://2xiao.github.io/leetcode-js/react/5)
+- [6. 实现 Commit 阶段](https://2xiao.github.io/leetcode-js/react/6)
 - [7. 实现 ReactDOM](https://2xiao.github.io/leetcode-js/react/7)
 - [8. 实现 useState](https://2xiao.github.io/leetcode-js/react/8)
 - [9. 接入测试框架](https://2xiao.github.io/leetcode-js/react/9)
@@ -23,6 +23,7 @@
 - [13. 实现 Fragment](https://2xiao.github.io/leetcode-js/react/13)
 - [14. 实现同步调度流程](https://2xiao.github.io/leetcode-js/react/14)
 - [15. 实现 useEffect](https://2xiao.github.io/leetcode-js/react/15)
+- [16. 实现 Noop Renderer](https://2xiao.github.io/leetcode-js/react/16)
 
 ---
 
