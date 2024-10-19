@@ -1,35 +1,35 @@
 <p align="center">
-  <a href="https://2xiao.github.io/leetcode-js/react" target="_blank"><img src="https://2xiao.github.io/leetcode-js/assets/image/react-logo.png" alt="logo" height="360"/></a>
+  <a href="https://2xiao.github.io/my-react" target="_blank"><img src="https://2xiao.github.io/leetcode-js/assets/image/react-logo.png" alt="logo" height="360"/></a>
 </p>
-<p align="center"><font size=5><b>《自己动手写 React》</b></font></p>
+<p align="center"><font size=5><b>《手写 React 源码》</b></font></p>
 <p align="center"><font color=gray>深入理解 React 源码，手把手带你构建自己的 React 库。</font></p>
 
 ---
 
 ### 目录
 
-- [1. 项目框架搭建](https://2xiao.github.io/leetcode-js/react/1)
-- [2. 实现 JSX](https://2xiao.github.io/leetcode-js/react/2)
-- [3. 实现 Reconciler](https://2xiao.github.io/leetcode-js/react/3)
-- [4. 实现更新机制](https://2xiao.github.io/leetcode-js/react/4)
-- [5. 实现 Render 阶段](https://2xiao.github.io/leetcode-js/react/5)
-- [6. 实现 Commit 阶段](https://2xiao.github.io/leetcode-js/react/6)
-- [7. 实现 ReactDOM](https://2xiao.github.io/leetcode-js/react/7)
-- [8. 实现 useState](https://2xiao.github.io/leetcode-js/react/8)
-- [9. 接入测试框架](https://2xiao.github.io/leetcode-js/react/9)
-- [10. 实现单节点 update](https://2xiao.github.io/leetcode-js/react/10)
-- [11. 实现事件系统](https://2xiao.github.io/leetcode-js/react/11)
-- [12. 实现 Diff 算法](https://2xiao.github.io/leetcode-js/react/12)
-- [13. 实现 Fragment](https://2xiao.github.io/leetcode-js/react/13)
-- [14. 实现同步调度流程](https://2xiao.github.io/leetcode-js/react/14)
-- [15. 实现 useEffect](https://2xiao.github.io/leetcode-js/react/15)
-- [16. 实现 Noop Renderer](https://2xiao.github.io/leetcode-js/react/16)
+- [1. 项目框架搭建](https://2xiao.github.io/my-react/1)
+- [2. 实现 JSX](https://2xiao.github.io/my-react/2)
+- [3. 实现 Reconciler](https://2xiao.github.io/my-react/3)
+- [4. 实现更新机制](https://2xiao.github.io/my-react/4)
+- [5. 实现 Render 阶段](https://2xiao.github.io/my-react/5)
+- [6. 实现 Commit 阶段](https://2xiao.github.io/my-react/6)
+- [7. 实现 ReactDOM](https://2xiao.github.io/my-react/7)
+- [8. 实现 useState](https://2xiao.github.io/my-react/8)
+- [9. 接入测试框架](https://2xiao.github.io/my-react/9)
+- [10. 实现单节点 update](https://2xiao.github.io/my-react/10)
+- [11. 实现事件系统](https://2xiao.github.io/my-react/11)
+- [12. 实现 Diff 算法](https://2xiao.github.io/my-react/12)
+- [13. 实现 Fragment](https://2xiao.github.io/my-react/13)
+- [14. 实现同步调度流程](https://2xiao.github.io/my-react/14)
+- [15. 实现 useEffect](https://2xiao.github.io/my-react/15)
+- [16. 实现 Noop Renderer](https://2xiao.github.io/my-react/16)
 
 ---
 
 ### 代码
 
-教程地址：[https://2xiao.github.io/leetcode-js/react](https://2xiao.github.io/leetcode-js/react)
+教程地址：[https://2xiao.github.io/my-react](https://2xiao.github.io/my-react)
 
 源代码地址：[https://github.com/2xiao/my-react](https://github.com/2xiao/my-react)
 
@@ -71,4 +71,4 @@ React 是由卓越工程师们在数年时间内精心打造的库，其中必�
 
 只要保持原作者署名和非商用，您可以自由地阅读、分享、修改本书。
 
-[开始阅读 ->](https://2xiao.github.io/leetcode-js/react/1)
+[开始阅读 ->](https://2xiao.github.io/my-react/1)
